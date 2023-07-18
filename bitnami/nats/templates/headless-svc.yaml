@@ -34,4 +34,7 @@ spec:
     - name: tcp-monitoring
       port: {{ .Values.service.ports.monitoring }}
       targetPort: monitoring
+    - name: tcp-websocket
+      port: {{ .Values.service.ports.websocket }}
+      targetPort: websocket
   selector: {{ include "common.labels.matchLabels" . | nindent 4 }}

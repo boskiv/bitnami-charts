@@ -100,7 +100,7 @@ image:
 ##
 auth:
   enabled: true
-  user: nats_client
+  user: ""
   password: ""
   token: ""
   timeout: 1
@@ -186,7 +186,7 @@ configuration: |-
   websocket {
     port: {{ .Values.containerPorts.websocket }}
     no_tls: true
-    no_auth_user: {{ .Values.auth.user | quote }}
+    no_auth_user: {{ .Values.auth.noAuthUser | quote }}
   }
   
   # Authorization for client connections
