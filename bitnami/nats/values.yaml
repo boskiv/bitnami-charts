@@ -182,6 +182,12 @@ configuration: |-
   {{- end }}
   listen: 0.0.0.0:{{ .Values.containerPorts.client }}
   http: 0.0.0.0:{{ .Values.containerPorts.monitoring }}
+  
+  websocket {
+    port: {{ .Values.containerPorts.websocket }}
+    no_tls: true
+    no_auth_user: {{ .Values.auth.user | quote }}
+  }
 
   # Authorization for client connections
   {{- if .Values.auth.enabled }}
@@ -321,6 +327,7 @@ containerPorts:
   client: 4222
   cluster: 6222
   monitoring: 8222
+  websocket: 9222
 ## Configure Pods Security Context
 ## ref: https://kubernetes.io/docs/tasks/configure-pod-container/security-context/#set-the-security-context-for-a-pod
 ## @param podSecurityContext.enabled Enabled NATS pods' Security Context
@@ -506,6 +513,7 @@ service:
     client: 4222
     cluster: 6222
     monitoring: 8222
+    websocket: 9222
   ## Node ports to expose
   ## @param service.nodePorts.client Node port for clients
   ## @param service.nodePorts.cluster Node port for clustering
@@ -516,6 +524,7 @@ service:
     client: ""
     cluster: ""
     monitoring: ""
+    websocket: ""
   ## @param service.sessionAffinity Control where client requests go, to the same pod or round-robin
   ## Values: ClientIP or None
   ## ref: https://kubernetes.io/docs/user-guide/services/
