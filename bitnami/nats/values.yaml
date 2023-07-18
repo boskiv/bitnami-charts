@@ -189,6 +189,8 @@ configuration: |-
     no_auth_user: {{ .Values.auth.noAuthUser | quote }}
   }
   
+  no_advertise: true
+  
   # Authorization for client connections
   {{- if .Values.auth.enabled }}
   authorization {
