@@ -189,23 +189,6 @@ configuration: |-
     no_auth_user: {{ .Values.auth.user | quote }}
   }
   
-  accounts: {
-    USERS: {
-      jetstream: enabled
-      users: [
-        {user: {{ .Values.auth.user }}, password: {{ .Values.auth.password }}}
-          # {user: crypto, password: $2a$11$DDrpwEDaGmHgVzehJ0Z.MescX/HizjxT8ontUydDtnbbMNNRHiBTC}
-          
-        ]
-    },
-    SYS: {
-      users: [
-        {user: admin, password: $2a$11$DDrpwEDaGmHgVzehJ0Z.MescX/HizjxT8ontUydDtnbbMNNRHiBTC}
-          # 1aZPKPDQzBuWzb31ZP00yVNOuYD32i
-        ]
-      },
-  }
-
   # Authorization for client connections
   {{- if .Values.auth.enabled }}
   authorization {
