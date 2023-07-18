@@ -118,6 +118,8 @@ spec:
               containerPort: {{ .Values.containerPorts.cluster }}
             - name: monitoring
               containerPort: {{ .Values.containerPorts.monitoring }}
+            - name: websocket
+              containerPort: {{ .Values.containerPorts.websocket }}
           {{- if not .Values.diagnosticMode.enabled }}
           {{- if .Values.customLivenessProbe }}
           livenessProbe: {{- include "common.tplvalues.render" (dict "value" .Values.customLivenessProbe "context" $) | nindent 12 }}
