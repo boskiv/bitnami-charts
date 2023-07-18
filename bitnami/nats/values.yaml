@@ -188,9 +188,7 @@ configuration: |-
     no_tls: true
     no_auth_user: {{ .Values.auth.noAuthUser | quote }}
   }
-  
-  no_advertise: true
-  
+    
   # Authorization for client connections
   {{- if .Values.auth.enabled }}
   authorization {
@@ -236,6 +234,7 @@ configuration: |-
 
   # Clustering definition
   cluster {
+    no_advertise: true
     name: {{ .Values.cluster.name | quote }}
     listen: 0.0.0.0:{{ .Values.containerPorts.cluster }}
     {{- if .Values.cluster.auth.enabled }}
